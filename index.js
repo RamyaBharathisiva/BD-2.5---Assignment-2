@@ -217,7 +217,7 @@ app.get('/stocks/filter/industry',(req,res)=>{
 })
 // Endpoint 5: Send all available stocks
 app.get('/stocks', (req, res) => {
-  res.json(stocks);
+  res.json({stocks:stocks});
 });
 
 
