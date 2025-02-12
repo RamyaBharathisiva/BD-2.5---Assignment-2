@@ -181,7 +181,7 @@ function sortStocksByPrice(order) {
 app.get('/stocks/sort/pricing',(req,res)=>{
   let pricing = req.query.order || 'low-to-high'; // Default to low-to-high if not specified
   let sortedStocks = [...stocks].sort(sortStocksByPrice(pricing));
-  res.json(sortedStocks);
+  res.json({stocks:sortedStocks});
 })
 // Function to sort by growth
 function sortByGrowth(order) {
@@ -193,7 +193,7 @@ function sortByGrowth(order) {
 app.get('/stocks/sort/growth', (req, res) => {
   let order = req.query.order || 'high-to-low'; // Default sorting: high-to-low
   let sortedStocks = [...stocks].sort(sortByGrowth(order));
-  res.json(sortedStocks);
+  res.json({stocks:sortedStocks});
 });
 //function to Filter the stocks based on the 2 Stock Exchange (NSE. and BSE)
 function filterByExchange(stock,exchange){
@@ -203,7 +203,7 @@ function filterByExchange(stock,exchange){
 app.get('/stocks/filter/exchange',(req,res)=>{
   let exchange=req.query.exchange;
   let filter=stocks.filter(stock=>filterByExchange(stock,exchange));
-  res.json(filter)
+  res.json({stocks:filter})
 })
 //function to Filter the stocks based on the Industrial Sector
 function filterByIndustry(stock,industry){
@@ -213,7 +213,7 @@ function filterByIndustry(stock,industry){
 app.get('/stocks/filter/industry',(req,res)=>{
     let industry=req.query.industry;
     let filter=stocks.filter(stock=>filterByIndustry(stock,industry));
-    res.json(filter);
+    res.json({stocks:filter});
 })
 // Endpoint 5: Send all available stocks
 app.get('/stocks', (req, res) => {
